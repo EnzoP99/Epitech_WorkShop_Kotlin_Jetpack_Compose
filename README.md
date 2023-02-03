@@ -107,7 +107,7 @@ Column (
 ) {
     /*
         Vous allez devoir mettre un OutlinedTextField() qui va vous permettre de modifier
-        votre titre qui prend toute la largeur du layout parent et de 50.dp de hauteur
+        votre titre qui prend toute la largeur du layout parent et 50.dp de hauteur
         avec un background de Color.Gray
         Ensuite, vous allez devoir mettre un autre OutlinedTextField() qui vous permettra
         de modifier le texte, le OutlinedTextField() prendra toute la largeur du layout parent
