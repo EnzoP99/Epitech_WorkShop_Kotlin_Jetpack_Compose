@@ -292,7 +292,7 @@ fun Navigation(
     ) {
         /*
             Ici, nous allons utiliser la class Route et set des navigation link
-            grâce NavHost et à la fonction composable.
+            grâce à NavHost et à la fonction composable().
          */
         /*
 
@@ -354,7 +354,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             NoteAPPTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
