@@ -61,8 +61,11 @@ Vous allez devoir implémenter des libraires pour cela, vous allez devoir vous r
 dependencies {
     // Les libraires de base
     ...
-    implementation "androidx.compose.material:material-icons-extended:1.3.1"// Ceci nous servira pour une prochaine étape.
-    implementation "androidx.navigation:navigation-compose:2.5.3" // Ceci nous servira pour une prochaine étape.
+    implementation "androidx.compose.material:material-icons-extended:1.3.1"
+    // Ceci nous servira pour une prochaine étape.
+    implementation "androidx.navigation:navigation-compose:2.5.3"
+    // Ceci nous servira pour une prochaine étape.
+    
     implementation "androidx.compose.runtime:runtime-livedata:1.4.0-alpha04"
 }
 ```
@@ -103,8 +106,11 @@ Column (
         .background(Color.DarkGray)
 ) {
     /*
-        Vous allez devoir mettre un OutlinedTextField() qui va vous permettre de modifier votre titre qui prend toute la largeur du layout parent et de 50.dp de hauteur avec un background de Color.Gray
-        Ensuite, vous allez devoir mettre un autre OutlinedTextField() qui vous permettra de modifier le texte, le OutlinedTextField() prendra toute la largeur du layout parent
+        Vous allez devoir mettre un OutlinedTextField() qui va vous permettre de modifier
+        votre titre qui prend toute la largeur du layout parent et de 50.dp de hauteur
+        avec un background de Color.Gray
+        Ensuite, vous allez devoir mettre un autre OutlinedTextField() qui vous permettra
+        de modifier le texte, le OutlinedTextField() prendra toute la largeur du layout parent
     */
 }
 ```
@@ -132,7 +138,8 @@ data class NoteItem(
 )
 
 /*
-    = MutableStateFlow("") Signifie que si vous ne donnez pas de valeur à la création de la data class la valeur par défaut sera MutableStateFlow("")
+    = MutableStateFlow("") Signifie que si vous ne donnez pas de valeur à la création
+    de la data class la valeur par défaut sera MutableStateFlow("")
 */
 ```
 
@@ -152,7 +159,10 @@ OutlinedTextField(
     value = title.collectAsState().value,
     onValueChange = {
         title.value = it
-        // Ici, on n'ajoute pas .collectAsState(), car onValueChange est une fonction et non un fonction composable 
+        /*
+        Ici, on n'ajoute pas .collectAsState(), car onValueChange est une fonction 
+        et non un fonction composable 
+         */
     },
     modifier = Modifier
         .fillMaxWidth(),
@@ -234,8 +244,14 @@ fun HomeView(notes: MutableList<NoteItem>) {
         ) {
             items(items = notes) {note -> // Ici, il vous suffit de donner à items la liste.
                 /*
-                    Ici, on va mettre Row avec une Icon cliquable pour supprimer la la note de la liste et un Text Cliquable qui prend toute la largeur de l'écran, qui a en hauteur 50.dp, qui a pour background Color.Gray, et qui affichera le titre de la note.
-                    Et on va mettre un Spacer() en dessous qui prend toute la largeur de l'écran, qui a en hauteur 2.dp, qui a pour background Color.Black, comme ça, cela va permettre de mettre une barre noire qui séparera les notes.
+                    Ici, on va mettre Row avec une Icon cliquable pour supprimer la 
+                    note de la liste et un Text Cliquable qui prend toute la largeur
+                    de l'écran, qui a en hauteur 50.dp, qui a pour background Color.Gray,
+                    et qui affichera le titre de la note.
+                    Et on va mettre un Spacer() en dessous qui prend toute la largeur de
+                    l'écran, qui a en hauteur 2.dp, qui a pour background Color.Black,
+                    comme ça, cela va permettre de mettre une barre noire qui séparera
+                    les notes.
                 */
             }
         }
@@ -259,7 +275,11 @@ On va commencer par créer un fichier Navigation, avec une fonction composable N
 sealed class Routes(val title: String) {
     object HomeScreen : Routes("HomeScreen")
     object NoteScreen : Routes("NoteScreen")
-}// La class Routes nous permets de créer des routes et nous permets de connecter les vues entre elles
+}
+/*
+    La class Routes nous permets de créer des routes et nous permets
+    de connecter les vues entre elles
+ */
 
 @Composable
 fun Navigation(
@@ -270,7 +290,10 @@ fun Navigation(
         navController,
         startDestination = Routes.HomeScreen.title
     ) {
-        // Ici, nous allons utiliser la class Route et set des navigation link grâce NavHost et à la fonction composable.
+        /*
+            Ici, nous allons utiliser la class Route et set des navigation link
+            grâce NavHost et à la fonction composable.
+         */
         /*
 
             composable(Routes.NomDeVotreView.title) {
@@ -292,7 +315,12 @@ fun Navigation(
             noteIndex?.let {
                 NoteView(noteIndex.toInt(), viewModel)
             }
-        }// Ceci est la fonction composable qui peut être utilisé avec un argument pour créer une vue qui change en fonction d'une valeur, par exemple en fonction de l'index envoyé, notre vue ne montrera pas la même note.
+        }
+        /*
+        Ceci est la fonction composable qui peut être utilisé avec un argument pour
+        créer une vue qui change en fonction d'une valeur, par exemple en fonction
+        de l'index envoyé, notre vue ne montrera pas la même note.
+         */
     }
 }
 ```
@@ -310,7 +338,11 @@ Navigation(navController, viewModel)
 Ensuite, il vous reste juste à implémenter le viewModel au-dessus de la fonction onCreate()
 ```kotlin
  private val noteViewModel by viewModels<MyViewModel>()
- // by viewModels<MyViewModel>() signifie que la valeur de la propriété sera déléguée à une instance d'un objet de délégation. Dans notre cas, cela permet de déléguer la responsabilité de la définition de notre MyViewModel à viewModels.
+ /* 
+    by viewModels<MyViewModel>() signifie que la valeur de la propriété sera déléguée
+    à une instance d'un objet de délégation. Dans notre cas, cela permet de déléguer
+    la responsabilité de la définition de notre MyViewModel à viewModels.
+ */
 ```
 
 Ce qui devrait vous donner ceci:
